@@ -6,36 +6,46 @@ public class SeasonExample {
     public enum Season {WINTER, SPRING, SUMMER, AUTUMN
     }
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Enter the month");
-        String month = br.readLine();
-
+    static void printSeason(String month) {
+        Season season;
         switch (month.toUpperCase()) {
             case "DECEMBER":
             case "JANUARY":
             case "FEBRUARY":
-                System.out.println(Season.WINTER);
+                season = Season.WINTER;
+                System.out.println(season);
                 break;
             case "MARCH":
             case "APRIL":
             case "MAY":
-                System.out.println(Season.SPRING);
+                season = Season.SPRING;
+                System.out.println(season);
                 break;
             case "JUNE":
             case "JULY":
             case "AUGUST":
-                System.out.println(Season.SUMMER);
+                season = Season.SUMMER;
+                System.out.println(season);
                 break;
             case "SEPTEMBER":
             case "OCTOBER":
             case "NOVEMBER":
-                System.out.println(Season.AUTUMN);
+                season = Season.AUTUMN;
+                System.out.println(season);
                 break;
             default:
                 System.out.println("Incorrect month name");
         }
-        br.close();
+    }
+
+    public static void main(String[] args) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+            System.out.println("Enter the month name:");
+            String month = br.readLine();
+            printSeason(month);
+        } catch (IOException e) {
+            throw new RuntimeException("Invalid input: ", e);
+        }
     }
 }
 
